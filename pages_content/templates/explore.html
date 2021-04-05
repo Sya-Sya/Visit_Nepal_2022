@@ -1,0 +1,21 @@
+{% extends 'base.html'%}{% load static %}
+
+<!-- -------------- Changing the content -------------- -->
+{% block content %}
+<!-- -------------- Applying Internal CSS -------------- -->
+<style>
+  #background {
+    background-image: url("/static/images/page_content/base.jpeg");
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+    object-fit: cover;
+    overflow: hidden;
+    transition: 1s;
+    z-index: -100;
+  }
+</style>
+<div class="huge_text">Explore Nepal.</div>
+
+{% endblock content %}
