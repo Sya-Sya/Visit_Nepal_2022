@@ -29,46 +29,56 @@
   }
 </style>
 <!-- log in form -->
-<section class="Form my-5 mx-5">
-  <div class="container">
-    <div class="row no-gutters">
-      <div class="col-lg-5">
-        <!-- added image -->
-        <img src="{% static 'images/login.jpg'%}" alt="" class="img-fluid" />
-      </div>
-      <div class="col-lg-7 px-5 pt-5 mt-5">
-        <h1 class="font-weight-bold py-3">LOG IN</h1>
-        <h4>Sign into your account</h4>
-        <form>
-          <div class="form-row">
-            <div class="col-lg-7">
-              <input
-                type="text"
-                placeholder="username"
-                class="form-control my-3 p-4"
-              />
+<form method="POST" action="/login/" class="form">
+  {% csrf_token %}
+  <section class="Form my-5 mx-5">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col-lg-5">
+          <!-- added image -->
+          <img src="{% static 'images/login.jpg'%}" alt="" class="img-fluid" />
+        </div>
+        <div class="col-lg-7 px-5 pt-5 mt-5">
+          <h1 class="font-weight-bold py-3">LOG IN</h1>
+          <h4>Sign into your account</h4>
+          <form>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="username"
+                  class="form-control my-3 p-4"
+                />
+              </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="col-lg-7">
-              <input
-                type="password"
-                placeholder="password"
-                class="form-control my-3 p-4"
-              />
+            <div class="form-row">
+              <div class="col-lg-7">
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="password"
+                  class="form-control my-3 p-4"
+                />
+              </div>
             </div>
-          </div>
-          <div class="form-row">
-            <div class="col-lg-7">
-              <button type="button" class="toggle mt-3 mb-5">Log in</button>
+            <div class="form-row">
+              <div class="col-lg-7">
+                <button type="submit" value="LOGIN" class="toggle mt-3 mb-5">
+                  Log in
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="my-4">
-            <p>Dont have account? <a href="#"> Register here</a></p>
-          </div>
-        </form>
+            <div class="my-4">
+              <p>
+                Dont have account?
+                <a href="{% url 'register'%}"> Register here</a>
+              </p>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</form>
 {% endblock content%}

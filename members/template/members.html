@@ -1,0 +1,198 @@
+{% extends 'base.html'%}{% load static %}{% block footer%}{% endblock footer%}
+{% block content %}
+<style>
+  body {
+    background-image: url("/static/images/buddhaBg.jpg");
+    /* background-position: center center; */
+    background-size: cover;
+  }
+  .toggle {
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background: white;
+    color: black;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  .toggle:hover {
+    background: white;
+    border: 1px solid;
+    color: black;
+  }
+</style>
+<!-- user bio -->
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-sm-3 mx-5">
+      {% if user.is_authenticated %}
+      <!-- adding inline CSS -->
+      <h4 style="color: white; margin-bottom: 25px">User Profile.</h4>
+      <h1><strong class="text-light">{{user.username}}</strong></h1>
+      <!-- bootstrap tablerow -->
+      <table
+        class="table table-condensed table-responsive table-user-information text-light"
+      >
+        <tbody>
+          <tr>
+            <td>First Name:</td>
+            <td>{{user.first_name}}</td>
+          </tr>
+          <tr>
+            <td>Last Name:</td>
+            <td>{{user.last_name}}</td>
+          </tr>
+          <tr>
+            <td>Country :</td>
+            <td>{{user.country}}</td>
+          </tr>
+          <tr>
+            <td>Email :</td>
+            <td>{{user.email}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="buttons">
+        <a href="#"
+          ><button type="button" class="toggle mt-3 mb-5 col-sm-4">
+            Room Booking
+          </button></a
+        >
+      </div>
+      {% endif %}
+    </div>
+    <!-- User upload form -->
+    <div class="col-sm-5">
+      <h4 style="color: white; margin-left: 50px">Upload Photo / video</h4>
+      <form method="POST" enctype="multipart/form-data" class="py-5">
+        {% csrf_token %}
+        <div class="row mb-3">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              name="title"
+              placeholder="Title"
+              required
+            />
+          </div>
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              name="location"
+              placeholder="location"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <input
+              type="file"
+              class="form-control"
+              name="photo"
+              placeholder="Video"
+              required
+            />
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col">
+            <textarea
+              name="description"
+              class="form-control"
+              placeholder="Description"
+              required
+              style="height: 100px"
+            ></textarea>
+          </div>
+        </div>
+        <div class="row mb-2">
+          <div class="col">
+            <input type="submit" class="form-control" value="Upload" />
+          </div>
+          <div class="col">
+            <input type="reset" class="form-control" value="Cancle" />
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- user uploaded section -->
+<div class="container-fluid my-5">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="user_uploads">
+        <div class="container">
+          <h3 style="color: white; display: inline-block; margin-bottom: 40px">
+            Your Uploads...
+          </h3>
+          {% for data in photoData %}
+          <div class="row">
+            <div class="col-4">
+              <div class="card" style="width: 17rem; margin: 5%">
+                <div class="card-body">
+                  <a href="{{data.file.url}}" target="_blank">
+                    <img
+                      src="{{data.file.url}}"
+                      alt="Video"
+                      style="height: 200px; width: 200px; border: 1px solid"
+                    />
+                  </a>
+                  <h5 class="card-title" style="color: black">
+                    Title: {{data.title}}
+                  </h5>
+                  <p class="card-text" style="color: black">
+                    Description: {{data.description}}
+                  </p>
+                  <p class="card-text" style="color: black">
+                    Uploaded by: {{data.user.username}}
+                  </p>
+                  <div class="delete_download">
+                    <div class="download">
+                      <a
+                        href="{{data.file.url}}"
+                        class="btn btn-primary"
+                        download
+                        >Download</a
+                      >
+                    </div>
+
+                    <div class="delete">
+                      <form action="delete/" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{data.id}}" name="id" />
+                        <button type="submit" class="btn btn-primary">
+                          Delete
+                        </button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <!-- user booked section -->
+    <div class="col-sm-6">
+      <div class="user_content">
+        <h3
+          style="color: white; display: inline-block; margin-bottom: 40px"
+        ></h3>
+        <h3 style="color: white; display: inline-block; margin-bottom: 40px">
+          Your Booking ...
+        </h3>
+        {%for book in booking %}
+        <h2>{{book}}</h2>
+        {%endfor%}
+      </div>
+    </div>
+    {% endblock content %}
+  </div>
+</div>
