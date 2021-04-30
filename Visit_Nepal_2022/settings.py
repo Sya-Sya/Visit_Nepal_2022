@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'pages_content',
     'login_register',
     'members',
+    'pages',
 ]
 
 MIDDLEWARE = [
@@ -60,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # Given the location of templates folder
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'login_register/template'), os.path.join(BASE_DIR, 'members/template'), ],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'login_register/template'), os.path.join(BASE_DIR, 'members/template'), os.path.join(BASE_DIR, 'pages/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

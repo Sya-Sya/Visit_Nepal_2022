@@ -25,7 +25,7 @@
 <!-- user bio -->
 <div class="container-fluid my-5">
   <div class="row">
-    <div class="col-sm-3 mx-5">
+    <div class="col-sm-5 mx-5">
       {% if user.is_authenticated %}
       <!-- adding inline CSS -->
       <h4 style="color: white; margin-bottom: 25px">User Profile.</h4>
@@ -44,10 +44,6 @@
             <td>{{user.last_name}}</td>
           </tr>
           <tr>
-            <td>Country :</td>
-            <td>{{user.country}}</td>
-          </tr>
-          <tr>
             <td>Email :</td>
             <td>{{user.email}}</td>
           </tr>
@@ -63,7 +59,8 @@
       {% endif %}
     </div>
     <!-- User upload form -->
-    <div class="col-sm-5">
+
+    <div class="col-sm-5 mx-5">
       <h4 style="color: white; margin-left: 50px">Upload Photo / video</h4>
       <form method="POST" enctype="multipart/form-data" class="py-5">
         {% csrf_token %}
@@ -124,34 +121,30 @@
 <!-- user uploaded section -->
 <div class="container-fluid my-5">
   <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-6 px-5">
       <div class="user_uploads">
         <div class="container">
           <h3 style="color: white; display: inline-block; margin-bottom: 40px">
             Your Uploads...
           </h3>
           {% for data in photoData %}
-          <div class="row">
-            <div class="col-4">
-              <div class="card" style="width: 17rem; margin: 5%">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <a href="{{data.file.url}}"
+                  ><img src="{{data.file.url}}" class="card-img" alt="..."
+                /></a>
+              </div>
+              <div class="col-md-8">
                 <div class="card-body">
-                  <a href="{{data.file.url}}" target="_blank">
-                    <img
-                      src="{{data.file.url}}"
-                      alt="Video"
-                      style="height: 200px; width: 200px; border: 1px solid"
-                    />
-                  </a>
-                  <h5 class="card-title" style="color: black">
-                    Title: {{data.title}}
-                  </h5>
-                  <p class="card-text" style="color: black">
-                    Description: {{data.description}}
+                  <h5 class="card-title">Title: {{data.title}}</h5>
+                  <p class="card-text">Description: {{data.description}}</p>
+                  <p class="card-text">
+                    <small class="text-muted"
+                      >Uploaded by: {{data.user.username}}</small
+                    >
                   </p>
-                  <p class="card-text" style="color: black">
-                    Uploaded by: {{data.user.username}}
-                  </p>
-                  <div class="delete_download">
+                  <div class="row">
                     <div class="download">
                       <a
                         href="{{data.file.url}}"
@@ -161,7 +154,7 @@
                       >
                     </div>
 
-                    <div class="delete">
+                    <div class="delete my-3">
                       <form action="delete/" method="POST">
                         {% csrf_token %}
                         <input type="hidden" value="{{data.id}}" name="id" />

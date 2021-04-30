@@ -1,0 +1,33 @@
+{%extends 'base.html'%} {% load static %} {% block content %}
+<link rel="stylesheet" href="/static/css/pages.css" />
+<style>
+  #background {
+    background-image: url("/static/images/sport.jpg");
+    height: 100vh;
+    background-position: center center;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+</style>
+<div class="culture_titles">
+  <p>Soprt</p>
+</div>
+
+<div class="container my-1">
+  <h4 style="color: white; padding-bottom: 50px; font-size: 40px">
+    Popular Sports.
+  </h4>
+  {% for post in posts %}
+  <div class="row">
+    <div class="col-md-4 col-sm-6">
+      <div class="single-content">
+        <img src="{{post.image.url}}" alt="" />
+        <div class="text-content">
+          <a href="/post?id=2"><h4>{{post.title}}</h4></a>
+          <h4>{{post.description | truncatewords:15}}</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endfor%} {% endblock %}
