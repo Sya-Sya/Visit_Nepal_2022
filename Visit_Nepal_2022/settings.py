@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'login_register',
     'members',
     'pages',
+    'chatbot',
+    'hotel_management_system',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # Given the location of templates folder
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'login_register/template'), os.path.join(BASE_DIR, 'members/template'), os.path.join(BASE_DIR, 'pages/template')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'login_register/template'), os.path.join(BASE_DIR, 'members/template'), os.path.join(BASE_DIR, 'pages/template'), os.path.join(BASE_DIR, 'hotel_management_system/template')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

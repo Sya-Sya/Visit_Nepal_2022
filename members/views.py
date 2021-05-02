@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Photos
+from hotel_management_system .models import Booking
 # Create your views here.
 
 
@@ -32,4 +33,10 @@ def members_View(request):
 
     data = Photos.objects.all().filter(user_id=request.user.id)
     print(data)
-    return render(request, 'members.html', {"photoData": data})
+    booking = Booking.objects.all().filter(user=request.user.id)
+    print(booking)
+    return render(request, 'members.html', {"photoData": data, "booking": booking})
+
+
+def room_catView(request):
+    return render(request, 'room_cat.html', {})

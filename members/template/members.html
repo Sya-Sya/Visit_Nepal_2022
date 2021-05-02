@@ -50,7 +50,7 @@
         </tbody>
       </table>
       <div class="buttons">
-        <a href="#"
+        <a href="{% url 'hms:room_cat' %}"
           ><button type="button" class="toggle mt-3 mb-5 col-sm-4">
             Room Booking
           </button></a
@@ -178,9 +178,11 @@
         <h3
           style="color: white; display: inline-block; margin-bottom: 40px"
         ></h3>
-        <h3 style="color: white; display: inline-block; margin-bottom: 40px">
-          Your Booking ...
-        </h3>
+        <a href="#"
+          ><h3 style="color: white; display: inline-block; margin-bottom: 40px">
+            Your Booking ...
+          </h3></a
+        >
         {%for book in booking %}
         <h2>{{book}}</h2>
         {%endfor%}

@@ -22,4 +22,6 @@ urlpatterns = [
     path('', include('login_register.urls')),
     path('', include('members.urls')),
     path('', include('pages.urls')),
+    path('', include('chatbot.urls')),
+    path('', include('hotel_management_system.urls', namespace='hms')),
 ]
