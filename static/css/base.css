@@ -19,10 +19,9 @@
   text-shadow: 7px 7px #333300;
   opacity: 0.9;
   position: absolute;
-  top: 40%;
-  left: 25%;
+  top: 45%;
+  left: 37%;
   color: white;
-  font-size: 110px;
   font-weight: bold;
   -webkit-transform: rotate(-25.5deg);
 }
@@ -63,4 +62,8 @@
   width: 100%;
   background: #fff;
   color: #fff;
+}
+/* to make fluid background image */
+.img-fluid {
+  @include img-fluid;
 }

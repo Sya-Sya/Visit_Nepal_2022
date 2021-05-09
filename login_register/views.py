@@ -45,6 +45,7 @@ def login_View(request):
         if user is not None:
             auth.login(request, user)
             if(request.GET.get('next', '') == ''):
+                print("user log in successfull")
                 return redirect("members")
             else:
                 return redirect(request.GET['next'])

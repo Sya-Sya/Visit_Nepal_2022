@@ -17,11 +17,17 @@
       integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
       crossorigin="anonymous"
     />
+    <!-- Swiper CDN CSS-->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Swiper CDN JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <!-- -------------- Bootstrap 4 added -------------- -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- -------------- Some more jquery files -------------- -->
     <script
@@ -43,14 +49,16 @@
     <!-- font-awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/brands.css" integrity="sha384-IiIL1/ODJBRTrDTFk/pW8j0DUI5/z9m1KYsTm/RjZTNV8RHLGZXkUDwgRRbbQ+Jh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css" integrity="sha512-OdEXQYCOldjqUEsuMKsZRj93Ht23QRlhIb8E/X0sbwZhme8eUw6g8q7AdxGJKakcBbv7+/PX0Gc2btf7Ru8cZA==" crossorigin="anonymous" />
   </head>
   <body>
     <!-- -------------- Navagation bar-------------- -->
-    <div id="background">
+    <div id="background" class="img-fluid">
     <header>
-      <nav class="navbar navbar-expand-lg navbar-light container py-3">
-        <div class="container-fluid ">
-          <a class="navbar-brand" href="{% url 'explore'%}">Visit Nepal 2022</a>
+      <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg navbar-light container">
+        
+          <a class="navbar-brand pb-5" href="{% url 'explore'%}">Visit Nepal 2022</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -60,15 +68,16 @@
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto float-right text-right mr-5 pr-5 mt-3">
               <li class="nav-item">
                 <li><a class="nav-link ml-5" href="{% url 'culture'%}">Culture</a></li>
                 <li><a class="nav-link ml-5" href="{% url 'natural'%}">Nature</a></li>
                 <li><a class="nav-link ml-5" href="{% url 'sport'%}">sport</a></li>
                 <li><a class="nav-link ml-5" href="{% url 'gallary'%}">Gallary</a></li>
+                <li><a class="nav-link ml-5" href="{% url 'chatbotinterface'%}">Chatbot</a></li>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item dropdown ml-5">
@@ -94,8 +103,9 @@
                 {% endif %}
             </ul>
           </div>
+          </nav>
         </div>
-      </nav>
+      
     </header>
   </div>
   <!-- -------------- Replacing other content-------------- -->
@@ -135,6 +145,9 @@
   <!-- Grid container -->
 
    <section class="">
+     {% if user.is_authenticated %}
+     <div></div>
+     {% else %}
         <p class="d-flex justify-content-center align-items-center">
           <span class="me-3">Register for free</span>
           <a href="{% url 'register'%}">
@@ -148,6 +161,7 @@
           </button>
           </a>
         </p>
+        {% endif %}
       </section>
 
   <!-- Copyright -->
