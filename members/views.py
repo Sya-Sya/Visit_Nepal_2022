@@ -36,7 +36,3 @@ def members_View(request):
     booking = Booking.objects.all().filter(user=request.user.id)
     print(booking)
     return render(request, 'members.html', {"photoData": data, "booking": booking})
-
-
-def room_catView(request):
-    return render(request, 'room_cat.html', {})

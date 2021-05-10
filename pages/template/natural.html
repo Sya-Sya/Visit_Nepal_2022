@@ -21,7 +21,7 @@
       {% for post in posts %}
       <div class="col-md-6 col-sm-6">
         <div class="project-item">
-          <a href="/post?id=1">
+          <a href="/post?id={{post.id}}">
             <img src="{{post.image.url}}" class="image-fluid" />
             <div class="project-overlay">
               <div class="project-info">
