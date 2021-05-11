@@ -37,7 +37,7 @@ class BookingView(FormView):
                 check_out=data['check_out']
             )
             booking.save()
-            return HttpResponse(members)
+            return render(booking)
         else:
             return HttpResponse("All the rooms are booked!!!")
 
